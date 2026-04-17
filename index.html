@@ -150,9 +150,15 @@
 
         .header-controls {
             display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 12px 0;
+        }
+
+        .header-controls-row {
+            display: flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 0;
             flex-wrap: wrap;
         }
 
@@ -853,14 +859,16 @@
             </div>
         </div>
         <div class="header-controls">
-            <div class="search-wrap">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="busca" placeholder="Pesquisar por nome, ramal ou setor..." onkeyup="filtrar()">
-                <div class="search-results" id="searchResults"></div>
+            <div class="header-controls-row">
+                <div class="search-wrap">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="busca" placeholder="Pesquisar por nome, ramal ou setor..." onkeyup="filtrar()">
+                </div>
+                <button class="btn btn-primary" onclick="abrirModalAdicionar()">
+                    <i class="fas fa-plus"></i> Adicionar Ramal
+                </button>
             </div>
-            <button class="btn btn-primary" onclick="abrirModalAdicionar()">
-                <i class="fas fa-plus"></i> Adicionar Ramal
-            </button>
+            <div class="search-results" id="searchResults"></div>
         </div>
     </header>
 
