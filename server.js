@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 
 const app = express();
 const PORT = 3000;
-const DATA_FILE = path.join(__dirname, 'ramais.json');
+const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'ramais.json');
 
 app.use(express.json());
 app.use(express.static(__dirname));

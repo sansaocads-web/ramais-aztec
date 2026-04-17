@@ -6,4 +6,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./ramais.json:/app/ramais.json
+      - ramais_data:/app/data
+    environment:
+      - DATA_FILE=/app/data/ramais.json
+
+volumes:
+  ramais_data:
