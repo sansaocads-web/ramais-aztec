@@ -257,6 +257,7 @@
             display: flex;
             gap: 2px;
             overflow-x: auto;
+            overflow-y: hidden;
             flex: 1;
         }
 
@@ -284,6 +285,9 @@
         }
 
         .tab:hover { color: var(--text); }
+        .tab[draggable] { cursor: grab; }
+        .tab[draggable]:active { cursor: grabbing; }
+        .tab.drag-over { border-bottom-color: var(--accent); opacity: 0.6; }
 
         .tab.ativo {
             color: var(--accent);
@@ -979,11 +983,57 @@
         atualizarSelectSetores();
     }
 
+    let dragSrc = null;
+
     function renderizarTabs() {
         const tabs = document.getElementById('tabs');
-        tabs.innerHTML =
-            `<button class="tab tab-geral" onclick="abrirSetor('GERAL')"><i class="fas fa-th"></i> GERAL</button>` +
-            Object.keys(setores).map(s => `<button class="tab" onclick="abrirSetor('${s}')">${s}</button>`).join('');
+        const setorAtivoLocal = setorAtivo;
+
+        const btns = Object.keys(setores).map(s => {
+            const btn = document.createElement('button');
+            btn.className = 'tab' + (s === setorAtivoLocal ? ' ativo' : '');
+            btn.textContent = s;
+            btn.setAttribute('draggable', 'true');
+            btn.dataset.setor = s;
+            btn.onclick = () => abrirSetor(s);
+
+            btn.addEventListener('dragstart', e => {
+                dragSrc = s;
+                e.dataTransfer.effectAllowed = 'move';
+            });
+            btn.addEventListener('dragover', e => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                btn.classList.add('drag-over');
+            });
+            btn.addEventListener('dragleave', () => btn.classList.remove('drag-over'));
+            btn.addEventListener('drop', e => {
+                e.preventDefault();
+                btn.classList.remove('drag-over');
+                if (dragSrc && dragSrc !== s) {
+                    const keys = Object.keys(setores);
+                    const fromIdx = keys.indexOf(dragSrc);
+                    const toIdx = keys.indexOf(s);
+                    keys.splice(fromIdx, 1);
+                    keys.splice(toIdx, 0, dragSrc);
+                    const novo = {};
+                    keys.forEach(k => novo[k] = setores[k]);
+                    setores = novo;
+                    salvarDados();
+                    renderizarTabs();
+                    atualizarSelectSetores();
+                }
+            });
+            return btn;
+        });
+
+        tabs.innerHTML = '';
+        const geral = document.createElement('button');
+        geral.className = 'tab tab-geral' + (setorAtivoLocal === 'GERAL' ? ' ativo' : '');
+        geral.innerHTML = '<i class="fas fa-th"></i> GERAL';
+        geral.onclick = () => abrirSetor('GERAL');
+        tabs.appendChild(geral);
+        btns.forEach(b => tabs.appendChild(b));
     }
 
     function atualizarSelectSetores() {
