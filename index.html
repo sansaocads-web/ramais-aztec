@@ -222,13 +222,16 @@
         .btn-primary {
             background: var(--accent);
             color: #07090f;
+            transition: all 0.2s;
         }
 
         .btn-primary:hover {
             filter: brightness(1.1);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px var(--accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
         }
+
+        .btn-primary:active { transform: scale(0.96); }
 
         /* ── MAIN ─────────────────────────────── */
         .main {
@@ -261,9 +264,10 @@
             flex: 1;
         }
 
-        .tabs::-webkit-scrollbar { height: 4px; }
-        .tabs::-webkit-scrollbar-track { background: transparent; }
-        .tabs::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+        .tabs::-webkit-scrollbar { height: 6px; }
+        .tabs::-webkit-scrollbar-track { background: var(--surface-3); border-radius: 6px; }
+        .tabs::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 6px; transition: background 0.2s; }
+        .tabs::-webkit-scrollbar-thumb:hover { background: #fb923c; }
         .tabs-bar { overflow: hidden; }
 
         .tab {
@@ -284,10 +288,29 @@
             top: 1px;
         }
 
-        .tab:hover { color: var(--text); }
+        .tab { transition: color 0.2s, border-color 0.2s, transform 0.15s, opacity 0.15s; }
+        .tab:hover { color: var(--text); transform: translateY(-1px); }
+        .tab.ativo { animation: tabActivate 0.25s ease-out; }
+        @keyframes tabActivate {
+            0%   { transform: translateY(0); }
+            40%  { transform: translateY(-3px); }
+            100% { transform: translateY(0); }
+        }
         .tab[draggable] { cursor: grab; }
-        .tab[draggable]:active { cursor: grabbing; }
-        .tab.drag-over { border-bottom-color: var(--accent); opacity: 0.6; }
+        .tab[draggable]:active { cursor: grabbing; opacity: 0.5; transform: scale(0.95); }
+        .tab.drag-over {
+            border-bottom-color: var(--accent);
+            background: var(--accent-dim);
+            transform: scale(1.05);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        .tab.drag-flying {
+            animation: tabFly 0.3s ease-out;
+        }
+        @keyframes tabFly {
+            0%   { transform: scale(1.08) translateY(-4px); opacity: 0.7; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
 
         .tab.ativo {
             color: var(--accent);
@@ -395,16 +418,25 @@
         }
 
         tbody tr {
-            transition: background 0.15s;
-            animation: fadeRow 0.3s ease-out;
+            transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
         }
+
+        tbody tr:nth-child(1)  { animation: fadeRow 0.25s ease-out both; }
+        tbody tr:nth-child(2)  { animation: fadeRow 0.32s ease-out both; }
+        tbody tr:nth-child(3)  { animation: fadeRow 0.38s ease-out both; }
+        tbody tr:nth-child(4)  { animation: fadeRow 0.43s ease-out both; }
+        tbody tr:nth-child(5)  { animation: fadeRow 0.47s ease-out both; }
+        tbody tr:nth-child(n+6){ animation: fadeRow 0.5s ease-out both; }
 
         @keyframes fadeRow {
-            from { opacity: 0; transform: translateY(3px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateX(-8px); }
+            to   { opacity: 1; transform: translateX(0); }
         }
 
-        tbody tr:hover { background: var(--accent-dim); }
+        tbody tr:hover {
+            background: var(--accent-dim);
+            transform: translateX(3px);
+        }
         tbody tr:last-child td { border-bottom: none; }
 
         /* ── NOME CELL ─────────────────────────── */
@@ -469,8 +501,19 @@
         .ramal-badge:hover {
             background: rgba(249,115,22,0.14);
             border-color: var(--accent);
-            box-shadow: 0 0 14px var(--accent-glow);
-            transform: translateY(-1px);
+            box-shadow: 0 0 18px var(--accent-glow);
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        .ramal-badge:active {
+            transform: scale(0.95);
+            animation: pulse 0.3s ease-out;
+        }
+
+        @keyframes pulse {
+            0%   { box-shadow: 0 0 0 0 var(--accent-glow); }
+            70%  { box-shadow: 0 0 0 10px transparent; }
+            100% { box-shadow: 0 0 0 0 transparent; }
         }
 
         .ramal-badge .copy-icon {
@@ -507,7 +550,10 @@
         .btn-edit:hover {
             background: rgba(96,165,250,0.1);
             border-color: #60a5fa;
+            transform: translateY(-1px);
         }
+
+        .btn-edit:active, .btn-delete:active { transform: scale(0.92); }
 
         .btn-delete {
             color: var(--danger);
@@ -517,6 +563,7 @@
         .btn-delete:hover {
             background: rgba(248,81,73,0.1);
             border-color: var(--danger);
+            transform: translateY(-1px);
         }
 
         /* ── EMPTY ─────────────────────────────── */
@@ -1022,6 +1069,10 @@
                     salvarDados();
                     renderizarTabs();
                     atualizarSelectSetores();
+                    document.querySelectorAll('.tab').forEach(t => {
+                        t.classList.add('drag-flying');
+                        t.addEventListener('animationend', () => t.classList.remove('drag-flying'), { once: true });
+                    });
                 }
             });
             return btn;
@@ -1143,8 +1194,18 @@
     }
 
     function atualizarTotal() {
-        document.getElementById('totalRamais').innerText =
-            Object.values(setores).reduce((a, b) => a + b.length, 0);
+        const total = Object.values(setores).reduce((a, b) => a + b.length, 0);
+        const el = document.getElementById('totalRamais');
+        const atual = parseInt(el.innerText) || 0;
+        if (atual === total) return;
+        let frame = 0;
+        const steps = 20;
+        const diff = total - atual;
+        const timer = setInterval(() => {
+            frame++;
+            el.innerText = Math.round(atual + diff * (frame / steps));
+            if (frame >= steps) clearInterval(timer);
+        }, 18);
     }
 
     function abrirModalAdicionar() {
