@@ -1,6 +1,6 @@
 services:
   ramais:
-    image: SEU-USUARIO/ramais-aztec:latest
+    build: .
     container_name: ramais-aztec
     restart: unless-stopped
     ports:
