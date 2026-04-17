@@ -1,0 +1,9 @@
+services:
+  ramais:
+    image: SEU-USUARIO/ramais-aztec:latest
+    container_name: ramais-aztec
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ramais.json:/app/ramais.json

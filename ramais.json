@@ -1,0 +1,150 @@
+{
+  "CONTÁBIL": [
+    {"nome": "AGUIDA LOPES", "ramal": "2230"},
+    {"nome": "AILTON", "ramal": "2068"},
+    {"nome": "ANA PAULA BAIER", "ramal": "2186"},
+    {"nome": "ANA PAULA CAETANO", "ramal": "2070"},
+    {"nome": "ANDRIELE", "ramal": "2066"},
+    {"nome": "ANNE", "ramal": "2060"},
+    {"nome": "AVELINE", "ramal": "2063"},
+    {"nome": "BIANCA NOGUEIRA", "ramal": "2067"},
+    {"nome": "DAVID", "ramal": "2237"},
+    {"nome": "DAYANA ROCHA", "ramal": "2187"},
+    {"nome": "DOUGLAS NASCIMENTO", "ramal": "2182"},
+    {"nome": "EVANILDE", "ramal": "2064"},
+    {"nome": "EZEQUIEL", "ramal": "2061"},
+    {"nome": "FABIANA", "ramal": "2078"},
+    {"nome": "JÉSSICA ANDRADE", "ramal": "2062"},
+    {"nome": "JÉSSICA POLYANNA", "ramal": "2077"},
+    {"nome": "KAREN BERTOLINO", "ramal": "2073"},
+    {"nome": "LARISSA LOPES", "ramal": "2072"},
+    {"nome": "LIZANDRO", "ramal": "2140"},
+    {"nome": "LUCAS", "ramal": "2197"},
+    {"nome": "PEDRO HENRIQUE", "ramal": "2111"},
+    {"nome": "TAYNÁ", "ramal": "2069"},
+    {"nome": "VANESSA OLIVEIRA", "ramal": "2232"},
+    {"nome": "WAGNER", "ramal": "2075"},
+    {"nome": "WELITON", "ramal": "2234"}
+  ],
+  "FISCAL - LUCRO PRESUMIDO": [
+    {"nome": "ADRIANA", "ramal": "2194"},
+    {"nome": "ANDRESSA", "ramal": "2032"},
+    {"nome": "BRUNA LUIZA", "ramal": "2246"},
+    {"nome": "CLAUDINE", "ramal": "2016"},
+    {"nome": "LAIS MOREIRA", "ramal": "2225"},
+    {"nome": "MARIA FERNANDA OLIVA", "ramal": "2248"},
+    {"nome": "MAYARA SOUZA", "ramal": "2242"},
+    {"nome": "RAIANY FAGUNDES", "ramal": "2139"},
+    {"nome": "SABRINA", "ramal": "2226"}
+  ],
+  "FISCAL - LUCRO REAL": [
+    {"nome": "CRISTIANE NASCIMENTO", "ramal": "2244"},
+    {"nome": "GIRLENE FELDNER", "ramal": "2247"},
+    {"nome": "GISLEANE", "ramal": "2144"},
+    {"nome": "IRACEMA", "ramal": "2193"},
+    {"nome": "JOSÉ LEONARDO", "ramal": "2135"},
+    {"nome": "LUIS GUSTAVO", "ramal": "2112"},
+    {"nome": "LUIZ ROBERTO", "ramal": "2142"},
+    {"nome": "MACK", "ramal": "2133"},
+    {"nome": "MARCUS", "ramal": "2138"},
+    {"nome": "NICOLI", "ramal": "2141"},
+    {"nome": "OSVALDO", "ramal": "2134"},
+    {"nome": "SARA SHAYANE", "ramal": "2143"},
+    {"nome": "THIAGO MARINHO", "ramal": "2240"}
+  ],
+  "FISCAL - SIMPLES NACIONAL": [
+    {"nome": "AMANDA INGRID", "ramal": "2096"},
+    {"nome": "ANA CRISTINA", "ramal": "2185"},
+    {"nome": "CAMILA", "ramal": "2098"},
+    {"nome": "DAYANE AMORIM", "ramal": "2094"},
+    {"nome": "GABRIELA", "ramal": "2099"},
+    {"nome": "GRAZIELE", "ramal": "2228"},
+    {"nome": "HELLEN GUSMÃO", "ramal": "2090"},
+    {"nome": "JÉSSICA ALCIOLE", "ramal": "2097"},
+    {"nome": "LUANA", "ramal": "2093"},
+    {"nome": "SILVANA", "ramal": "2095"},
+    {"nome": "VANESSA ANDRADE", "ramal": "2092"}
+  ],
+  "DEPARTAMENTO PESSOAL": [
+    {"nome": "DEYCIELE", "ramal": "2047"},
+    {"nome": "ELIENE", "ramal": "2041"},
+    {"nome": "ERIKA", "ramal": "2071"},
+    {"nome": "EVANDRO", "ramal": "2045"},
+    {"nome": "FRANCINE", "ramal": "2171"},
+    {"nome": "GABRIELA SANTANA", "ramal": "2043"},
+    {"nome": "GABRIELLE SILVEIRA", "ramal": "2046"},
+    {"nome": "JÉSSICA OLIVEIRA", "ramal": "2116"},
+    {"nome": "JÉSSYCA SANTOS", "ramal": "2130"},
+    {"nome": "JULIANA", "ramal": "2195"},
+    {"nome": "JUSSARA", "ramal": "2044"},
+    {"nome": "KELLY", "ramal": "2052"},
+    {"nome": "LUCIANA", "ramal": "2042"},
+    {"nome": "NATHALIA SÁ", "ramal": "2040"},
+    {"nome": "SARA ADRIELY", "ramal": "2051"},
+    {"nome": "SÉRGIO", "ramal": "2202"}
+  ],
+  "CONSTITUIÇÃO DE EMPRESAS": [
+    {"nome": "CRISTIANE RUBIA", "ramal": "2031"},
+    {"nome": "MARIA CLARA", "ramal": "2153"},
+    {"nome": "RAFAELA", "ramal": "2154"}
+  ],
+  "RELAÇÕES COMERCIAIS": [
+    {"nome": "MARIA FERNANDA", "ramal": "2245"},
+    {"nome": "PATRÍCIA", "ramal": "2011"}
+  ],
+  "REGULARIZAÇÕES": [
+    {"nome": "ALCIONE", "ramal": "2013"},
+    {"nome": "BRUNA", "ramal": "2049"},
+    {"nome": "CAIO FROES", "ramal": "2236"},
+    {"nome": "MARIA CLARA PEREIRA", "ramal": "2239"}
+  ],
+  "ALVARÁ": [
+    {"nome": "FERNANDA COSTA", "ramal": "2155"},
+    {"nome": "ILZA", "ramal": "2151"},
+    {"nome": "MAICON NEVES", "ramal": "2033"},
+    {"nome": "RAQUEL", "ramal": "2188"}
+  ],
+  "PROTOCOLO": [
+    {"nome": "ANA PATRÍCIA", "ramal": "2200"},
+    {"nome": "HELLEN CHRYSTINE", "ramal": "2189"}
+  ],
+  "DIRETORIA": [
+    {"nome": "LENE", "ramal": "2030"}
+  ],
+  "GID": [
+    {"nome": "CRISTINEY", "ramal": "2181"},
+    {"nome": "LAURA ANGÉLICA", "ramal": "2184"},
+    {"nome": "LOREN", "ramal": "2196"},
+    {"nome": "MILENA", "ramal": "2201"}
+  ],
+  "LOGÍSTICA": [
+    {"nome": "DIONIZE", "ramal": "38 998004216"},
+    {"nome": "MAICON", "ramal": "38 998255235"},
+    {"nome": "MARCOS", "ramal": "38 998770247"}
+  ],
+  "TI": [
+    {"nome": "SANSÃO", "ramal": "2183"},
+    {"nome": "JOÃO VITOR", "ramal": "2180"}
+  ],
+  "PROCESSOS": [
+    {"nome": "ANDRÉ", "ramal": "2243"}
+  ],
+  "RH/GGC": [
+    {"nome": "ANA LÍVIA", "ramal": "2229"},
+    {"nome": "GGC", "ramal": "2076"},
+    {"nome": "JOSÉ SIMÃO", "ramal": "2014"},
+    {"nome": "SELMA SANTOS", "ramal": "2015"}
+  ],
+  "FINANCEIRO": [
+    {"nome": "DANIELLE", "ramal": "2074"},
+    {"nome": "LAIS FONSECA", "ramal": "2012"},
+    {"nome": "POLLYANA CAROLINE", "ramal": "2115"},
+    {"nome": "SOLANGE", "ramal": "2233"}
+  ],
+  "ARQUIVO": [
+    {"nome": "LARISSA", "ramal": "2150"}
+  ],
+  "RECEPÇÃO": [
+    {"nome": "JENIFFER", "ramal": "2000"}
+  ]
+}
