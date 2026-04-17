@@ -1117,9 +1117,9 @@
 
         if (buscaAtiva) {
             dados = dados.filter(r => {
-                return fuzzyMatch(buscaAtiva, r.nome) >= 0 ||
-                       fuzzyMatch(buscaAtiva, r.ramal) >= 0 ||
-                       fuzzyMatch(buscaAtiva, r.setor) >= 0;
+                return fuzzyMatch(buscaAtiva, r.nome  || '') >= 0 ||
+                       fuzzyMatch(buscaAtiva, r.ramal || '') >= 0 ||
+                       fuzzyMatch(buscaAtiva, r.setor || '') >= 0;
             });
             dados.sort((a, b) => {
                 const sA = Math.max(fuzzyMatch(buscaAtiva, a.nome), fuzzyMatch(buscaAtiva, a.ramal), fuzzyMatch(buscaAtiva, a.setor));
@@ -1190,7 +1190,7 @@
 
     function filtrar() {
         buscaAtiva = document.getElementById('busca').value;
-        if (setorAtivo) renderizarRamais(setorAtivo);
+        renderizarRamais(buscaAtiva ? 'GERAL' : setorAtivo);
     }
 
     function atualizarTotal() {
