@@ -260,9 +260,10 @@
             flex: 1;
         }
 
-        .tabs::-webkit-scrollbar { height: 5px; }
-        .tabs::-webkit-scrollbar-track { background: var(--surface-3); border-radius: 4px; }
-        .tabs::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; opacity: 0.7; }
+        .tabs::-webkit-scrollbar { height: 4px; }
+        .tabs::-webkit-scrollbar-track { background: transparent; }
+        .tabs::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+        .tabs-bar { overflow: hidden; }
 
         .tab {
             padding: 13px 15px;
@@ -320,6 +321,45 @@
         .btn-add-setor:hover {
             background: rgba(63,185,80,0.1);
             border-color: var(--success);
+        }
+
+        /* ── SORT ─────────────────────────────── */
+        .sort-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .sort-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-right: 4px;
+        }
+
+        .btn-sort {
+            padding: 4px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: var(--font-b);
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-sort:hover { color: var(--text); border-color: var(--border-hi); }
+
+        .btn-sort.ativo {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-color: rgba(249,115,22,0.35);
         }
 
         /* ── TABLE ─────────────────────────────── */
@@ -863,6 +903,14 @@
     let operacaoSenha = null;
     let setorDeletando = null;
     let indexDeletando = null;
+    let ordenacao = 'setor';
+
+    function ordenar(tipo) {
+        ordenacao = tipo;
+        document.querySelectorAll('.btn-sort').forEach(b => b.classList.remove('ativo'));
+        document.getElementById('sort-' + tipo)?.classList.add('ativo');
+        renderizarRamais(setorAtivo);
+    }
 
     async function salvarDados() {
         await fetch('/api/setores', {
@@ -981,9 +1029,20 @@
                 `${dados.length} resultado${dados.length !== 1 ? 's' : ''} encontrado${dados.length !== 1 ? 's' : ''}`;
         } else {
             document.getElementById('searchResults').innerText = '';
+            if (ordenacao === 'nome') {
+                dados.sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+            } else if (ordenacao === 'ramal') {
+                dados.sort((a, b) => parseInt(a.ramal) - parseInt(b.ramal));
+            }
         }
 
         const html = dados.length ? `
+            <div class="sort-bar">
+                <span class="sort-label">Ordenar:</span>
+                <button id="sort-setor" class="btn-sort ${ordenacao==='setor'?'ativo':''}" onclick="ordenar('setor')">Setor</button>
+                <button id="sort-nome" class="btn-sort ${ordenacao==='nome'?'ativo':''}" onclick="ordenar('nome')">Nome A–Z</button>
+                <button id="sort-ramal" class="btn-sort ${ordenacao==='ramal'?'ativo':''}" onclick="ordenar('ramal')">Ramal 0–9</button>
+            </div>
             <div class="table-container">
                 <table>
                     <thead>
